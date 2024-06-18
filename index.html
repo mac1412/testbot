@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Streaming</title>
+</head>
+<body>
+    <h1>Movie Streaming</h1>
+    <div id="player"></div>
+
+    <script>
+        // Extract movie ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('movieId');
+
+        if (movieId) {
+            // Create an iframe to embed the movie player from vidsrc.xyz
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://vidsrc.xyz/embed/movie?tmdb=${movieId}`;
+            iframe.width = '800';
+            iframe.height = '450';
+            iframe.allow = 'fullscreen';
+            document.getElementById('player').appendChild(iframe);
+        } else {
+            document.getElementById('player').innerText = 'No movie ID provided.';
+        }
+    </script>
+</body>
+</html>
